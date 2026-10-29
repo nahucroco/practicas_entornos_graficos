@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Resolución de la Práctica N°1 de HTML - Entornos Gráficos - UTN">
+<meta name="keywords" lang="es" content="HTML, práctica, entornos gráficos, UTN">
+<title>Práctica N°1 - HTML | Entornos Gráficos</title>
+<style>
+  :root {
+    --bg: #f7f7f5; --fg: #1d1d1f; --muted: #5f6368; --card: #ffffff;
+    --border: #dcdcd8; --accent: #1a5fb4; --code-bg: #f0f0ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17181a; --fg: #e8e8e6; --muted: #a0a4a8; --card: #212225;
+      --border: #36383c; --accent: #78aeed; --code-bg: #2a2b2f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  header, main, footer { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+  header { padding-top: 40px; }
+  header p { color: var(--muted); margin-top: 0; }
+  h1 { margin-bottom: 4px; }
+  h2 { margin-top: 48px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+  h3 { margin-top: 32px; }
+  a { color: var(--accent); }
+  nav ol { columns: 2; padding-left: 20px; }
+  section.card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 4px 20px 16px; margin: 16px 0;
+  }
+  pre, code { font-family: Consolas, "Courier New", monospace; font-size: 14px; }
+  pre {
+    background: var(--code-bg); padding: 12px; border-radius: 6px;
+    overflow-x: auto; white-space: pre;
+  }
+  :not(pre) > code { background: var(--code-bg); padding: 1px 4px; border-radius: 3px; }
+  table.datos { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 15px; }
+  table.datos th, table.datos td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; vertical-align: top; }
+  table.datos th { background: var(--code-bg); }
+  .demo { border: 1px dashed var(--border); padding: 12px; border-radius: 6px; margin: 8px 0; overflow-x: auto; }
+  .nota { color: var(--muted); font-size: 14px; }
+  footer { padding: 40px 16px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 600px) { nav ol { columns: 1; } }
+</style>
+</head>
+<body>
+
+<a id="arriba"></a>
+<header>
+  <h1>Práctica N°1 — HTML</h1>
+  <p>Entornos Gráficos · UTN · Resolución</p>
+  <nav>
+    <ol>
+      <li><a href="#ejemplos">Ejemplos 1, 2 y 3</a></li>
+      <li><a href="#ej1">Ejercitación 1 — Cuestionario</a></li>
+      <li><a href="#ej2">Ejercitación 2 — Elementos, tags y atributos</a></li>
+      <li><a href="#ej3">Ejercitación 3 — Diferencias entre códigos</a></li>
+      <li><a href="#ej4">Ejercitación 4 — Estructura desde ejemplo visual</a></li>
+      <li><a href="#ej5">Ejercitación 5 — Marcos</a></li>
+    </ol>
+  </nav>
+</header>
+
+<main>
+
+<!-- ===================================================== -->
+<h2 id="ejemplos">Introducción — Ejemplos</h2>
+
+<section class="card">
+<h3>Ejemplo 1 y 2</h3>
+<p>El código del ejemplo está en <a href="ejemplo1.html">ejemplo1.html</a>. Al analizarlo:</p>
+<ul>
+  <li><code>&lt;html&gt;</code> es la raíz; <code>&lt;head&gt;</code> contiene información sobre el documento (el <code>&lt;title&gt;</code> que aparece en la pestaña) y <code>&lt;body&gt;</code> el contenido visible.</li>
+  <li><code>&lt;h1 align="center"&gt;</code> es un encabezado de nivel 1 centrado. Como no se indica fuente, usa la fuente por defecto del navegador (lo que señala el comentario).</li>
+  <li><code>&lt;hr&gt;</code> dibuja una línea horizontal; <code>&lt;br&gt;</code> un salto de línea (ambos son elementos vacíos).</li>
+  <li><code>&lt;font&gt;</code> define color, tamaño y tipografía; <code>&lt;b&gt;</code> negrita, <code>&lt;i&gt;</code> cursiva; <code>&lt;p align="justify"&gt;</code> un párrafo justificado; <code>&amp;nbsp;</code> un espacio no separable (deja un párrafo “vacío”).</li>
+  <li>Hay un error de anidamiento: <code>&lt;i&gt;&lt;font&gt;…&lt;/i&gt;&lt;/font&gt;</code> cierra las etiquetas en distinto orden en que se abrieron. Los navegadores lo toleran, pero no es válido.</li>
+  <li><code>align</code> y <code>&lt;font&gt;</code> están desaprobados en HTML 4.01 y son obsoletos en HTML5: hoy la presentación se hace con CSS.</li>
+</ul>
+<p><strong>Comparación (Ejemplo 2):</strong> la Vista Diseño del IDE es una aproximación; el navegador es quien realmente interpreta el HTML, por lo que pueden variar fuentes, márgenes y la forma en que se corrigen errores de anidamiento. Por eso siempre hay que verificar el resultado en uno o más navegadores.</p>
+</section>
+
+<section class="card">
+<h3>Ejemplo 3</h3>
+<p>Al ver el código fuente de <a href="http://utn.edu.ar/" target="_blank">utn.edu.ar</a> (Ctrl+U) y guardarla como “Página web completa”, se obtiene un archivo <code>.html</code> y una carpeta con los recursos (CSS, JS, imágenes). Al analizarla en el IDE se observa:</p>
+<ul>
+  <li>Una declaración <code>&lt;!DOCTYPE html&gt;</code> (HTML5) al comienzo.</li>
+  <li>En el <code>&lt;head&gt;</code>: metadatos (<code>&lt;meta charset&gt;</code>, <code>viewport</code>, <code>description</code>, etiquetas Open Graph para redes sociales), enlaces a hojas de estilo (<code>&lt;link rel="stylesheet"&gt;</code>) y scripts.</li>
+  <li>En el <code>&lt;body&gt;</code>: estructura semántica (<code>header</code>, <code>nav</code>, <code>main</code>/<code>section</code>, <code>footer</code>) y bloques <code>div</code> con clases para el diseño.</li>
+  <li>Al guardar, las rutas a los recursos se reescriben para apuntar a la carpeta local.</li>
+</ul>
+</section>
+
+<!-- ===================================================== -->
+<h2 id="ej1">Ejercitación 1 — Cuestionario</h2>
+
+<section class="card">
+<h3>1. ¿Qué es HTML, cuándo fue creado, cuáles fueron sus versiones y cuál es la última?</h3>
+<p><strong>HTML</strong> (<em>HyperText Markup Language</em>) es el lenguaje de marcado usado para describir la estructura y el contenido de las páginas web. No es un lenguaje de programación: mediante etiquetas indica qué es cada parte del documento (títulos, párrafos, enlaces, imágenes, tablas, formularios, etc.) y el navegador lo interpreta.</p>
+<p>Fue creado por <strong>Tim Berners-Lee</strong> en el CERN: lo propuso en 1989–1990 y en 1991 publicó el documento <em>“HTML Tags”</em>, con 18 etiquetas.</p>
+<table class="datos">
+  <tr><th>Versión</th><th>Año</th><th>Características</th></tr>
+  <tr><td>HTML (borrador IETF)</td><td>1991–1993</td><td>Primeras etiquetas, sin estándar oficial.</td></tr>
+  <tr><td>HTML 2.0</td><td>1995</td><td>Primer estándar oficial (IETF, RFC 1866). Formularios.</td></tr>
+  <tr><td>HTML 3.2</td><td>1997</td><td>Primera recomendación del W3C. Tablas, applets, texto alrededor de imágenes.</td></tr>
+  <tr><td>HTML 4.0 / 4.01</td><td>1997 / 1999</td><td>Hojas de estilo (CSS), scripts, marcos, mejoras de accesibilidad; tres DTDs (Strict, Transitional, Frameset).</td></tr>
+  <tr><td>XHTML 1.0 / 1.1</td><td>2000 / 2001</td><td>Reformulación de HTML 4.01 con la sintaxis estricta de XML.</td></tr>
+  <tr><td>HTML5</td><td>2014 (rec. W3C)</td><td>Elementos semánticos (<code>header</code>, <code>nav</code>, <code>article</code>…), audio y video nativos, <code>canvas</code>, nuevos tipos de <code>input</code>, APIs para JavaScript. Versiones 5.1 (2016) y 5.2 (2017).</td></tr>
+  <tr><td>HTML Living Standard</td><td>2019 – hoy</td><td>Desde 2019 el W3C y el WHATWG acordaron que la única especificación es el <em>HTML Living Standard</em> del WHATWG, que se actualiza continuamente.</td></tr>
+</table>
+<p>La <strong>última versión</strong> es HTML5, que hoy se mantiene como <em>HTML Living Standard</em> (estándar “vivo”, sin números de versión).</p>
+
+<h3>2. ¿Cuáles son los principios básicos que el W3C recomienda para crear documentos HTML?</h3>
+<p>La especificación HTML 4.01 recomienda:</p>
+<ul>
+  <li><strong>Separar estructura y presentación:</strong> HTML debe describir la estructura del documento; la presentación (colores, fuentes, alineación) debe ir en hojas de estilo (CSS). Por eso muchos elementos y atributos de presentación (<code>font</code>, <code>align</code>, <code>bgcolor</code>) se desaprueban.</li>
+  <li><strong>Considerar la accesibilidad universal:</strong> los documentos deben poder usarse por personas con discapacidades y con distintos dispositivos (lectores de pantalla, navegadores de texto, móviles). Por ejemplo, dar texto alternativo (<code>alt</code>) a las imágenes, usar etiquetas (<code>label</code>) en formularios, resúmenes en tablas.</li>
+  <li><strong>Ayudar a los agentes de usuario con el renderizado incremental:</strong> diseñar tablas (con <code>colgroup</code>, <code>col</code>, anchos) y documentos de manera que el navegador pueda ir mostrando el contenido a medida que lo recibe.</li>
+</ul>
+<p>Además, escribir documentos <strong>válidos</strong> según la especificación (correcto anidamiento, atributos permitidos) y <strong>internacionalizables</strong> (indicar idioma y codificación de caracteres).</p>
+
+<h3>3. ¿Cuándo un elemento o atributo se considera desaprobado? ¿Y obsoleto?</h3>
+<ul>
+  <li><strong>Desaprobado (<em>deprecated</em>):</strong> es un elemento o atributo que fue superado por construcciones más nuevas (generalmente CSS). Todavía forma parte de la especificación y los navegadores deben soportarlo por compatibilidad, pero se desaconseja su uso porque puede quedar obsoleto en versiones futuras. Ej.: <code>&lt;font&gt;</code>, <code>&lt;center&gt;</code>, el atributo <code>align</code>. Solo son válidos en el DTD Transitional.</li>
+  <li><strong>Obsoleto (<em>obsolete</em>):</strong> es un elemento que ya no forma parte de la especificación. Los navegadores pueden no soportarlo y no se garantiza su funcionamiento. Ej.: <code>&lt;listing&gt;</code>, <code>&lt;plaintext&gt;</code>, <code>&lt;xmp&gt;</code> en HTML 4.01.</li>
+</ul>
+
+<h3>4. ¿Qué es el DTD y cuáles son los DTDs de HTML 4.01?</h3>
+<p>El <strong>DTD</strong> (<em>Document Type Definition</em>, definición de tipo de documento) es un conjunto de reglas que define qué elementos y atributos pueden usarse en un documento, cómo pueden anidarse y qué valores aceptan. Se indica al comienzo del documento con la declaración <code>&lt;!DOCTYPE&gt;</code>, que le dice al navegador y a los validadores qué versión de HTML se usa.</p>
+<p>HTML 4.01 contempla tres DTDs:</p>
+<table class="datos">
+  <tr><th>DTD</th><th>Uso</th><th>Declaración</th></tr>
+  <tr><td>Strict (estricto)</td><td>No incluye elementos ni atributos desaprobados ni marcos. Toda la presentación va en CSS.</td><td><code>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</code></td></tr>
+  <tr><td>Transitional (transicional)</td><td>Incluye todo lo de Strict más los elementos y atributos desaprobados (<code>font</code>, <code>align</code>, <code>bgcolor</code>…).</td><td><code>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</code></td></tr>
+  <tr><td>Frameset (marcos)</td><td>Igual que Transitional pero el <code>body</code> se reemplaza por <code>frameset</code>, para documentos con marcos.</td><td><code>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"&gt;</code></td></tr>
+</table>
+<p class="nota">En HTML5 ya no se usa DTD; la declaración es simplemente <code>&lt;!DOCTYPE html&gt;</code>.</p>
+
+<h3>5. ¿Qué son los metadatos y cómo se especifican en HTML?</h3>
+<p>Los <strong>metadatos</strong> son “datos sobre los datos”: información acerca del documento (autor, descripción, palabras clave, codificación de caracteres, fecha de expiración, etc.) que no se muestra en la página, pero que usan los navegadores, buscadores y otros programas.</p>
+<p>Se especifican dentro del <code>&lt;head&gt;</code>, principalmente con el elemento vacío <code>&lt;meta&gt;</code>:</p>
+<ul>
+  <li><code>name</code> + <code>content</code>: propiedad y valor. Ej.: <code>&lt;meta name="author" content="Juan Pérez"&gt;</code>, <code>&lt;meta name="description" content="…"&gt;</code>, <code>&lt;meta name="keywords" content="…"&gt;</code>.</li>
+  <li><code>http-equiv</code> + <code>content</code>: equivale a un encabezado HTTP. Ej.: <code>&lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8"&gt;</code>, <code>expires</code>, <code>refresh</code>.</li>
+  <li><code>scheme</code> (opcional): indica cómo interpretar el valor; <code>lang</code>: idioma del contenido.</li>
+  <li><code>charset</code> (HTML5): <code>&lt;meta charset="utf-8"&gt;</code>.</li>
+</ul>
+<p>También son metadatos el <code>&lt;title&gt;</code> y los <code>&lt;link&gt;</code> que relacionan el documento con otros recursos (hoja de estilo, ícono, versión alternativa). El atributo <code>profile</code> del <code>head</code> permitía en HTML 4.01 indicar un perfil de metadatos.</p>
+</section>
+
+<!-- ===================================================== -->
+<h2 id="ej2">Ejercitación 2 — Elementos, etiquetas y atributos</h2>
+
+<section class="card">
+<h3>2.a) Comentario</h3>
+<pre>&lt;!-- Código controlado el día 12/08/2009 --&gt;</pre>
+<ul>
+  <li><strong>Sección:</strong> puede ir en cualquier parte del documento (<code>head</code> o <code>body</code>).</li>
+  <li><strong>Efecto:</strong> es un comentario; el navegador lo ignora y no se muestra. Sirve para documentar el código.</li>
+  <li><strong>Elementos:</strong> no es un elemento, sino una construcción especial que se abre con <code>&lt;!--</code> y se cierra con <code>--&gt;</code>. No tiene atributos.</li>
+  <li class="nota">En el enunciado aparece cerrado con “→”: debe cerrarse con <code>--&gt;</code>, si no todo lo que sigue quedaría comentado.</li>
+</ul>
+
+<h3>2.b) Bloque div</h3>
+<pre>&lt;div id="bloque1"&gt;Contenido del bloque1&lt;/div&gt;</pre>
+<ul>
+  <li><strong>Sección:</strong> <code>body</code>.</li>
+  <li><strong>Efecto:</strong> define una división o bloque genérico que agrupa contenido. Se muestra en una línea nueva y ocupa todo el ancho; sin CSS no tiene apariencia especial. Se usa para darle estilo o manipularlo con scripts.</li>
+  <li><strong>Elemento:</strong> <code>div</code>. Etiqueta de apertura <code>&lt;div&gt;</code> y de cierre <code>&lt;/div&gt;</code> (ambas obligatorias). Contenido: “Contenido del bloque1”.</li>
+  <li><strong>Atributos:</strong> <code>id="bloque1"</code> — identificador único en el documento (opcional).</li>
+</ul>
+
+<h3>2.c) Imagen</h3>
+<pre>&lt;img src="" alt="lugar imagen" id="im1" name="im1" width="32" height="32" longdesc="detalles.htm" /&gt;</pre>
+<ul>
+  <li><strong>Sección:</strong> <code>body</code>.</li>
+  <li><strong>Efecto:</strong> inserta una imagen de 32×32 píxeles. Como <code>src</code> está vacío no se carga ninguna imagen y el navegador muestra el texto alternativo “lugar imagen”.</li>
+  <li><strong>Elemento:</strong> <code>img</code>, elemento vacío (no tiene etiqueta de cierre; el <code>/&gt;</code> final es la sintaxis XHTML).</li>
+</ul>
+<table class="datos">
+  <tr><th>Atributo</th><th>Valor</th><th>Significado</th><th>¿Obligatorio?</th></tr>
+  <tr><td><code>src</code></td><td>"" (vacío)</td><td>URL de la imagen</td><td>Sí</td></tr>
+  <tr><td><code>alt</code></td><td>"lugar imagen"</td><td>Texto alternativo si la imagen no se muestra (accesibilidad)</td><td>Sí</td></tr>
+  <tr><td><code>id</code></td><td>"im1"</td><td>Identificador único</td><td>No</td></tr>
+  <tr><td><code>name</code></td><td>"im1"</td><td>Nombre para referenciarla desde scripts (desaprobado en favor de <code>id</code>)</td><td>No</td></tr>
+  <tr><td><code>width</code> / <code>height</code></td><td>"32"</td><td>Ancho y alto en píxeles</td><td>No</td></tr>
+  <tr><td><code>longdesc</code></td><td>"detalles.htm"</td><td>Enlace a una descripción extensa de la imagen</td><td>No</td></tr>
+</table>
+
+<h3>2.d) Metadatos</h3>
+<pre>&lt;meta name="keywords" lang="es" content="casa, compra, venta, alquiler " /&gt;
+&lt;meta http-equiv="expires" content="16-Sep-2019 7:49 PM" /&gt;</pre>
+<ul>
+  <li><strong>Sección:</strong> <code>head</code>.</li>
+  <li><strong>Efecto:</strong> no se ven en la página. El primero define las palabras clave del documento (en español) para buscadores; el segundo indica la fecha y hora en que el documento expira, por lo que después de esa fecha el navegador/caché deberá pedirlo de nuevo al servidor.</li>
+  <li><strong>Elemento:</strong> <code>meta</code>, elemento vacío.</li>
+</ul>
+<table class="datos">
+  <tr><th>Atributo</th><th>Valor</th><th>¿Obligatorio?</th></tr>
+  <tr><td><code>name</code></td><td>"keywords" — nombre de la propiedad</td><td>No (se usa <code>name</code> o <code>http-equiv</code>)</td></tr>
+  <tr><td><code>lang</code></td><td>"es" — idioma del valor</td><td>No</td></tr>
+  <tr><td><code>content</code></td><td>"casa, compra, venta, alquiler" / "16-Sep-2019 7:49 PM"</td><td>Sí</td></tr>
+  <tr><td><code>http-equiv</code></td><td>"expires" — equivale al encabezado HTTP <em>Expires</em></td><td>No (se usa <code>name</code> o <code>http-equiv</code>)</td></tr>
+</table>
+
+<h3>2.e) Enlace</h3>
+<pre>&lt;a href="http://www.e-style.com.ar/resumen.html" type="text/html" hreflang="es" charset="utf-8" rel="help"&gt;Resumen HTML &lt;/a&gt;</pre>
+<ul>
+  <li><strong>Sección:</strong> <code>body</code>.</li>
+  <li><strong>Efecto:</strong> muestra el texto “Resumen HTML” como hipervínculo; al hacer clic abre la página indicada en la misma ventana.</li>
+  <li><strong>Elemento:</strong> <code>a</code> (ancla), con etiqueta de apertura y cierre obligatorias.</li>
+</ul>
+<table class="datos">
+  <tr><th>Atributo</th><th>Valor</th><th>Significado</th><th>¿Obligatorio?</th></tr>
+  <tr><td><code>href</code></td><td>"http://www.e-style.com.ar/resumen.html"</td><td>Destino del enlace</td><td>No (sin él es un ancla de destino), pero necesario para que sea vínculo</td></tr>
+  <tr><td><code>type</code></td><td>"text/html"</td><td>Tipo de contenido del recurso enlazado</td><td>No</td></tr>
+  <tr><td><code>hreflang</code></td><td>"es"</td><td>Idioma del recurso enlazado</td><td>No</td></tr>
+  <tr><td><code>charset</code></td><td>"utf-8"</td><td>Codificación del recurso enlazado (obsoleto en HTML5)</td><td>No</td></tr>
+  <tr><td><code>rel</code></td><td>"help"</td><td>Relación del recurso con el documento actual: es una página de ayuda</td><td>No</td></tr>
+</table>
+
+<h3>2.f) Tabla</h3>
+<pre>&lt;table width="200" summary="Datos correspondientes al ejercicio vencido"&gt;
+&lt;caption align="top"&gt; Título &lt;/caption&gt;
+&lt;tr&gt;
+  &lt;th scope="col"&gt;&amp;nbsp;&lt;/th&gt; &lt;th scope="col"&gt;A&lt;/th&gt; &lt;th scope="col"&gt;B&lt;/th&gt; &lt;th scope="col"&gt;C&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt; &lt;th scope="row"&gt;1º&lt;/th&gt; &lt;td&gt;&amp;nbsp;&lt;/td&gt; &lt;td&gt;&amp;nbsp;&lt;/td&gt; &lt;td&gt;&amp;nbsp;&lt;/td&gt; &lt;/tr&gt;
+&lt;tr&gt; &lt;th scope="row"&gt;2º&lt;/th&gt; &lt;td&gt;&amp;nbsp;&lt;/td&gt; &lt;td&gt;&amp;nbsp;&lt;/td&gt; &lt;td&gt;&amp;nbsp;&lt;/td&gt; &lt;/tr&gt;
+&lt;/table&gt;</pre>
+<div class="demo">
+<table width="200" summary="Datos correspondientes al ejercicio vencido" border="1">
+<caption align="top"> Título </caption>
+<tr><th scope="col">&nbsp;</th><th scope="col">A</th><th scope="col">B</th><th scope="col">C</th></tr>
+<tr><th scope="row">1º</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><th scope="row">2º</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+<p class="nota">(Se agregó <code>border="1"</code> solo para visualizarla.)</p>
+</div>
+<ul>
+  <li><strong>Sección:</strong> <code>body</code>.</li>
+  <li><strong>Efecto:</strong> tabla de 200 px de ancho, 3 filas × 4 columnas, con el título “Título” arriba. La primera fila tiene los encabezados de columna (A, B, C) y la primera columna los de fila (1º, 2º); los encabezados se ven en negrita y centrados. Las celdas de datos están vacías (<code>&amp;nbsp;</code> evita que colapsen). No tiene borde.</li>
+</ul>
+<table class="datos">
+  <tr><th>Elemento</th><th>Función</th><th>Atributos (valor)</th><th>¿Obligatorio?</th></tr>
+  <tr><td><code>table</code></td><td>Define la tabla</td><td><code>width</code>="200" (ancho en px); <code>summary</code>="Datos correspondientes…" (resumen para lectores de pantalla, no se muestra)</td><td>Ambos opcionales</td></tr>
+  <tr><td><code>caption</code></td><td>Título de la tabla</td><td><code>align</code>="top" (posición del título, desaprobado)</td><td>Opcional</td></tr>
+  <tr><td><code>tr</code></td><td>Fila de la tabla</td><td>—</td><td>—</td></tr>
+  <tr><td><code>th</code></td><td>Celda de encabezado</td><td><code>scope</code>="col" / "row" (indica si encabeza una columna o una fila)</td><td>Opcional</td></tr>
+  <tr><td><code>td</code></td><td>Celda de datos</td><td>—</td><td>—</td></tr>
+</table>
+<p class="nota">Las etiquetas de cierre <code>&lt;/table&gt;</code> y <code>&lt;/caption&gt;</code> son obligatorias; en HTML las de cierre de <code>tr</code>, <code>th</code> y <code>td</code> son opcionales (en XHTML son obligatorias).</p>
+</section>
+
+<!-- ===================================================== -->
+<h2 id="ej3">Ejercitación 3 — Diferencias entre segmentos de código</h2>
+
+<section class="card">
+<h3>3.a) Enlaces y anclas</h3>
+<pre>&lt;a href="http://www.google.com.ar"&gt;Click aquí para ir a Google&lt;/a&gt;
+&lt;a href="http://www.google.com.ar" target="_blank"&gt;Click aquí para ir a Google&lt;/a&gt;
+&lt;a href="http://www. google.com.ar" type="text/html" hreflang="es" charset="utf-8" rel="help"&gt;
+&lt;a href="#"&gt;Click aquí para ir a Google&lt;/a&gt;
+&lt;a href="#arriba"&gt;Click aquí para volver arriba&lt;/a&gt;
+&lt;a name="arriba" id="arriba"&gt;&lt;/a&gt;</pre>
+<ol>
+  <li>Enlace externo: abre Google <strong>en la misma ventana</strong>.</li>
+  <li>Igual que el anterior pero con <code>target="_blank"</code>: abre Google <strong>en una ventana/pestaña nueva</strong>.</li>
+  <li>No tiene texto ni etiqueta de cierre, así que no se ve nada propio y el navegador lo cierra automáticamente, pudiendo envolver el contenido siguiente en el enlace. Además la URL tiene un espacio (“www. google”), por lo que es inválida. Los atributos <code>type</code>, <code>hreflang</code>, <code>charset</code> y <code>rel</code> solo informan sobre el recurso enlazado.</li>
+  <li><code>href="#"</code>: se ve como enlace, pero no va a ningún lado; solo lleva al principio de la página actual (se usa como “enlace vacío”, por ejemplo para luego asociarle un script). A pesar del texto, no va a Google.</li>
+  <li>Enlace interno: lleva al punto de la misma página marcado con el ancla “arriba”.</li>
+  <li>Ancla de destino: no se ve (no tiene contenido ni <code>href</code>); marca la posición a la que apunta el enlace anterior. <code>name</code> e <code>id</code> la identifican.</li>
+</ol>
+<div class="demo">
+  <a href="http://www.google.com.ar">Click aquí para ir a Google</a><br>
+  <a href="http://www.google.com.ar" target="_blank">Click aquí para ir a Google</a> (ventana nueva)<br>
+  <a href="#">Click aquí para ir a Google</a> (href="#")<br>
+  <a href="#arriba">Click aquí para volver arriba</a>
+</div>
+
+<h3>3.b) Imágenes y enlaces</h3>
+<pre>&lt;p&gt;&lt;img src="im1.jpg" alt="imagen1" /&gt;&lt;a href="http://www.google.com.ar"&gt;Click aquí&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.google.com.ar"&gt;&lt;img src="im1.jpg" alt="imagen1" /&gt;&lt;/a&gt; Click aquí&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.google.com.ar"&gt;&lt;img src="im1.jpg" alt="imagen1" /&gt;Click aquí&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.google.com.ar"&gt;&lt;img src="im1.jpg" alt="imagen1" /&gt;&lt;/a&gt; &lt;a href="http://www.google.com.ar"&gt;Click aquí&lt;/a&gt;&lt;/p&gt;</pre>
+<p>Visualmente los cuatro párrafos muestran la imagen seguida del texto “Click aquí”; cambia qué parte es clickeable:</p>
+<ol>
+  <li>La imagen <strong>no</strong> es enlace; solo el texto lo es.</li>
+  <li>Solo la imagen es enlace; el texto es texto normal (y hay un espacio entre ambos).</li>
+  <li>Imagen y texto forman <strong>un único enlace</strong> (pegados, sin espacio).</li>
+  <li>Imagen y texto son <strong>dos enlaces distintos</strong> al mismo destino, separados por un espacio que no es clickeable.</li>
+</ol>
+<p class="nota">En navegadores antiguos una imagen dentro de un enlace se mostraba con un borde azul.</p>
+
+<h3>3.c) Listas</h3>
+<div class="demo">
+<ul><li>xxx</li><li>yyy</li><li>zzz</li></ul>
+<ol><li>xxx</li><li>yyy</li><li>zzz</li></ol>
+<ol><li>xxx</li></ol>
+<ol><li value="2">yyy</li></ol>
+<ol><li value="3">zzz</li></ol>
+<blockquote><p>1. xxx<br />2. yyy<br />3. zzz</p></blockquote>
+</div>
+<ul>
+  <li><code>&lt;ul&gt;</code>: lista <strong>no ordenada</strong>, cada ítem con viñeta.</li>
+  <li><code>&lt;ol&gt;</code>: lista <strong>ordenada</strong>, numerada automáticamente 1, 2, 3.</li>
+  <li>Tres <code>&lt;ol&gt;</code> separadas: cada una es una lista distinta; con <code>value</code> se fuerza el número del ítem (2 y 3). Se ve casi igual que la anterior, pero con más separación entre ítems (márgenes de cada lista) y semánticamente son tres listas, no una. <code>value</code> está desaprobado en HTML 4.01.</li>
+  <li><code>&lt;blockquote&gt;</code>: no es una lista sino una cita en bloque (con sangría) con números escritos a mano y saltos de línea. Se parece visualmente, pero no tiene semántica de lista y la numeración no es automática.</li>
+</ul>
+
+<h3>3.d) Encabezados de tabla</h3>
+<div class="demo">
+<table border="1" width="300"><tr><th>Columna 1</th><th>Columna 2</th></tr><tr><td>Celda 1</td><td>Celda 2</td></tr><tr><td>Celda 3</td><td>Celda 4</td></tr></table>
+<br>
+<table border="1" width="300"><tr><td><div align="center"><strong>Columna1</strong></div></td><td><div align="center"><strong>Columna 2</strong></div></td></tr><tr><td>Celda 1</td><td>Celda 2</td></tr><tr><td>Celda 3</td><td>Celda 4</td></tr></table>
+</div>
+<p>Visualmente son prácticamente iguales: la primera fila aparece centrada y en negrita. La diferencia es semántica: en la primera se usan <code>&lt;th&gt;</code> (celdas de encabezado), que por defecto se muestran así y que los lectores de pantalla y buscadores reconocen como encabezados. En la segunda son celdas de datos (<code>&lt;td&gt;</code>) a las que se les dio formato manualmente con <code>div align="center"</code> y <code>strong</code>, sin significado de encabezado. La primera es la forma correcta. (Además, en el enunciado “Colum na1” quedó cortado.)</p>
+
+<h3>3.e) Título con caption vs. celda combinada</h3>
+<div class="demo">
+<table width="200"><caption>Título</caption>
+<tr><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr>
+<tr><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr>
+</table>
+<br>
+<table width="200">
+<tr><td colspan="3"><div align="center">Título</div></td></tr>
+<tr><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr>
+<tr><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr>
+</table>
+</div>
+<p>Ambas muestran “Título” centrado sobre una grilla gris de 2×3. En la primera el título es un <code>&lt;caption&gt;</code>: el título <em>de la tabla</em>, que queda fuera de la grilla de celdas. En la segunda el título es una fila más de la tabla: una celda que ocupa las 3 columnas (<code>colspan="3"</code>) y centrada con un <code>div</code>; forma parte de la grilla (queda separada por el <code>cellspacing</code> como el resto de las celdas). Semánticamente, lo correcto es <code>caption</code>.</p>
+<p class="nota">En el enunciado el código del primer caso aparece mezclado con el segundo (una tabla dentro del <code>caption</code> y etiquetas cruzadas), lo que no es HTML válido; se interpretó como dos tablas separadas.</p>
+
+<h3>3.f) rowspan vs. colspan</h3>
+<div class="demo">
+<table width="200"><tr><td colspan="3"><div align="center">Título</div></td></tr>
+<tr><td rowspan="2" bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr>
+<tr><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr></table>
+<br>
+<table width="200"><tr><td colspan="3"><div align="center">Título</div></td></tr>
+<tr><td colspan="2" bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr>
+<tr><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td><td bgcolor="#dddddd">&nbsp;</td></tr></table>
+</div>
+<p>Ambas tienen el título en una celda que abarca 3 columnas. En la primera, la primera celda de la segunda fila tiene <code>rowspan="2"</code>: se extiende <strong>verticalmente</strong> sobre dos filas, por eso la última fila solo tiene 2 celdas. En la segunda, la primera celda tiene <code>colspan="2"</code>: se extiende <strong>horizontalmente</strong> sobre dos columnas, por eso esa fila tiene 2 celdas y la siguiente 3.</p>
+
+<h3>3.g) Combinación de celdas, cellpadding y cellspacing</h3>
+<div class="demo">
+<table width="200" border="1"><tr><td colspan="3"><div align="center">Título</div></td></tr>
+<tr><td colspan="2" rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td width="50%">&nbsp;</td></tr></table>
+<br>
+<table width="200" border="1" cellpadding="0" cellspacing="0"><tr><td colspan="2"><div align="center">Título</div></td></tr>
+<tr><td rowspan="2">&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td width="50%">&nbsp;</td></tr></table>
+</div>
+<ul>
+  <li>Las dos tablas se ven casi iguales: un título arriba, una celda grande a la izquierda que ocupa dos filas y dos celdas a la derecha.</li>
+  <li>En la primera, la celda grande usa <code>colspan="2" rowspan="2"</code> en una tabla de 3 columnas; pero como ninguna fila tiene celdas propias en las columnas 1 y 2 por separado, esas columnas se “funden” y el resultado equivale a una tabla de 2 columnas. Es una estructura innecesariamente compleja.</li>
+  <li>En la segunda se logra lo mismo de forma simple: 2 columnas, título con <code>colspan="2"</code> y celda izquierda con <code>rowspan="2"</code>.</li>
+  <li>La segunda además tiene <code>cellpadding="0"</code> (sin espacio entre el borde de la celda y su contenido) y <code>cellspacing="0"</code> (sin espacio entre celdas), así que los bordes se ven simples/juntos y las celdas más compactas; la primera tiene los bordes dobles separados por defecto.</li>
+  <li>En el enunciado falta un espacio en <code>colspan="2"rowspan="2"</code>; los navegadores lo toleran, pero no es válido.</li>
+</ul>
+
+<h3>3.h) Formularios</h3>
+<div class="demo">
+<form id="form1" name="form1" action="procesar.php" method="post" target="_blank" onsubmit="return false">
+<fieldset><legend>LOGIN</legend>
+Usuario: <input type="text" id="usu1" name="usu1" value="xxx" /><br />
+Clave: <input type="password" id="clave1" name="clave1" value="xxx" />
+</fieldset>
+<input type="submit" id="boton1" name="boton1" value="Enviar" />
+</form>
+<br>
+<form id="form2" name="form2" action="" method="get" target="_blank" onsubmit="return false">
+LOGIN<br />
+<label>Usuario: <input type="text" id="usu2" name="usu2" /></label><br />
+<label>Clave: <input type="text" id="clave2" name="clave2" /></label><br />
+<input type="submit" id="boton2" name="boton2" value="Enviar" />
+</form>
+<br>
+<form id="form3" name="form3" action="mailto:xx@xx.com" enctype="text/plain" method="post" target="_blank" onsubmit="return false">
+<fieldset><legend>LOGIN</legend>
+Usuario: <input type="text" id="usu3" name="usu3" /><br />
+Clave: <input type="password" id="clave3" name="clave3" />
+</fieldset>
+<input type="reset" id="boton3" name="boton3" value="Enviar" />
+</form>
+<p class="nota">(En esta demo el envío está deshabilitado.)</p>
+</div>
+<table class="datos">
+  <tr><th></th><th>form1</th><th>form2</th><th>form3</th></tr>
+  <tr><td>Agrupación</td><td><code>fieldset</code> con <code>legend</code> “LOGIN” (recuadro con título)</td><td>Texto “LOGIN” suelto, sin recuadro</td><td><code>fieldset</code> con <code>legend</code></td></tr>
+  <tr><td>Campos</td><td>Usuario de texto y clave <code>password</code> (se ve con puntos), ambos <strong>precargados</strong> con “xxx” (<code>value</code>)</td><td>Ambos de tipo <code>text</code>, vacíos: la clave <strong>se ve en claro</strong>. Los textos están asociados a los campos con <code>label</code> (clic en el texto enfoca el campo)</td><td>Usuario de texto y clave <code>password</code>, vacíos</td></tr>
+  <tr><td>Destino (<code>action</code>)</td><td><code>procesar.php</code> en el servidor</td><td>Vacío: se envía a la misma página</td><td><code>mailto:</code>: abre el cliente de correo para enviar los datos como texto plano (<code>enctype="text/plain"</code>)</td></tr>
+  <tr><td>Método</td><td><code>post</code>: datos en el cuerpo de la petición, no visibles en la URL</td><td><code>get</code>: datos agregados a la URL (<code>?usu2=…&amp;clave2=…</code>), la clave queda visible</td><td><code>post</code> (en el enunciado está escrito mal: “p ost”)</td></tr>
+  <tr><td>Botón</td><td><code>submit</code> “Enviar”: envía el formulario</td><td><code>submit</code> “Enviar”</td><td><code>reset</code> con texto “Enviar”: en realidad <strong>borra</strong> los campos y no envía nada (texto engañoso)</td></tr>
+</table>
+<p>Los tres usan <code>target="_blank"</code>, así que la respuesta se abre en una ventana nueva. En form3 del enunciado hay además errores de sintaxis: el <code>action</code> se cierra con comillas tipográficas (”), y el valor de <code>enctype</code> no tiene comillas.</p>
+
+<h3>3.i) button vs. input type="button"</h3>
+<div class="demo">
+<label>Botón 1
+<button type="button" name="boton1" id="boton1i">
+<img src="logo.svg" alt="Botón con imagen " width="30" height="20" /><br />
+<b>CLICK AQUÍ</b></button></label>
+<label>Botón 2
+<input type="button" name="boton2" id="boton2i" value="CLICK AQUÍ" />
+</label>
+</div>
+<p>Los dos son botones genéricos (no envían el formulario; necesitan un script para hacer algo). La diferencia es el contenido: <code>&lt;button&gt;</code> tiene etiqueta de apertura y cierre y puede contener HTML (aquí una imagen, un salto de línea y texto en negrita), por lo que se ve más grande y con la imagen. <code>&lt;input type="button"&gt;</code> es un elemento vacío y solo puede mostrar texto plano, tomado del atributo <code>value</code>.</p>
+
+<h3>3.j) Botones de opción (radio)</h3>
+<div class="demo">
+<p><label><input type="radio" name="opcion" value="X" />X</label><br />
+<label><input type="radio" name="opcion" value="Y" />Y</label></p>
+<p><label><input type="radio" name="opcion1" value="X" />X</label><br />
+<label><input type="radio" name="opcion2" value="Y" />Y</label></p>
+</div>
+<p>Se ven iguales. En el primer párrafo los dos radios tienen el mismo <code>name</code> (“opcion”), así que forman un <strong>grupo</strong>: solo se puede elegir uno (al marcar Y se desmarca X). En el segundo tienen nombres distintos (“opcion1” y “opcion2”), así que son grupos independientes: se pueden marcar los dos y, una vez marcados, no se pueden desmarcar. Además, en el enunciado se repiten los <code>id</code> “X” e “Y”, lo que es inválido (los id deben ser únicos).</p>
+
+<h3>3.k) Listas de selección</h3>
+<div class="demo">
+<select name="lista">
+<optgroup label="Caso 1"><option>Mayo</option><option>Junio</option></optgroup>
+<optgroup label="Caso 2"><option>Mayo</option><option>Junio</option></optgroup>
+</select>
+<select name="lista[]" multiple="multiple">
+<optgroup label=" Caso 1"><option>Mayo</option><option>Junio</option></optgroup>
+<optgroup label=" Caso 2"><option>Mayo</option><option>Junio</option></optgroup>
+</select>
+</div>
+<p>Ambas agrupan las opciones con <code>optgroup</code> (los títulos “Caso 1” y “Caso 2” se ven en negrita y no se pueden seleccionar). La primera es una lista <strong>desplegable</strong> en la que se elige una sola opción. La segunda, con <code>multiple</code>, se muestra como un <strong>cuadro de lista</strong> con varias filas visibles y permite seleccionar varias opciones (con Ctrl/Shift). Su nombre <code>lista[]</code> con corchetes hace que, por ejemplo en PHP, los valores elegidos lleguen como un arreglo.</p>
+</section>
+
+<!-- ===================================================== -->
+<h2 id="ej4">Ejercitación 4 — Estructura desde ejemplo visual</h2>
+<section class="card">
+<p>Resolución: <a href="ejercicio4.html" target="_blank">ejercicio4.html</a>. Código completo:</p>
+<pre id="codigo-ej4">Ver el archivo ejercicio4.html</pre>
+<p class="nota">Elementos usados: imagen enlazada al sitio de la universidad (<code>a</code> + <code>img</code>), línea (<code>hr</code>), título (<code>h1</code>), tabla con <code>colspan</code>/<code>rowspan</code>, lista ordenada con un enlace interno (<code>#enunciado</code>) y uno externo con <code>target="_blank"</code>, formulario con <code>action="mailto:x@x.com"</code>, subtítulo (<code>h2</code>), dos párrafos y enlace <code>mailto:</code>.</p>
+</section>
+
+<!-- ===================================================== -->
+<h2 id="ej5">Ejercitación 5 — Documento con marcos</h2>
+<section class="card">
+<p>Resolución: <a href="ejercicio5/index.html" target="_blank">ejercicio5/index.html</a> (abrir en una pestaña nueva).</p>
+<pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Ejercitación 5 - Marcos&lt;/title&gt;&lt;/head&gt;
+&lt;frameset rows="110,*,70"&gt;
+  &lt;frameset cols="*,160"&gt;
+    &lt;frame src="encabezado.htm" name="encabezado" scrolling="no"&gt;
+    &lt;frame src="logo.htm" name="logo" scrolling="no"&gt;
+  &lt;/frameset&gt;
+  &lt;frameset cols="200,*"&gt;
+    &lt;frame src="menu.htm" name="menu"&gt;
+    &lt;frame src="Articulos.htm" name="principal"&gt;
+  &lt;/frameset&gt;
+  &lt;frame src="pie.htm" name="pie" scrolling="no"&gt;
+  &lt;noframes&gt;…&lt;/noframes&gt;
+&lt;/frameset&gt;
+&lt;/html&gt;</pre>
+<p>Los enlaces del menú y del pie usan <code>target="principal"</code> para que <code>Articulos.htm</code> y <code>MasInfo.htm</code> se abran en el marco principal. Archivos: <code>encabezado.htm</code> (solo texto), <code>logo.htm</code> (imagen), <code>menu.htm</code> (lista no ordenada con enlaces), <code>Articulos.htm</code> (tabla de artículos y precios), <code>MasInfo.htm</code> (correo consultas@empresa.com) y <code>pie.htm</code> (menú de navegación nuevamente).</p>
+<p class="nota"><code>frameset</code> y <code>frame</code> son obsoletos en HTML5 (hoy se usaría <code>iframe</code> o una maquetación con CSS), pero los navegadores actuales los siguen mostrando.</p>
+</section>
+
+<p><a href="#arriba">Volver arriba</a></p>
+</main>
+
+<footer>Entornos Gráficos — UTN · Práctica N°1 HTML</footer>
+
+<script>
+  // Muestra el código fuente del ejercicio 4 (funciona al servirse por http, p. ej. GitHub Pages)
+  fetch('ejercicio4.html').then(r => r.ok ? r.text() : Promise.reject())
+    .then(t => { document.getElementById('codigo-ej4').textContent = t; })
+    .catch(() => {});
+</script>
+</body>
+</html>
