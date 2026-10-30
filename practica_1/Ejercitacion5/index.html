@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Ejercitación 5 - Documento con marcos</title>
+</head>
+<frameset rows="90,*,70">
+  <frameset cols="70%,30%">
+    <frame src="encabezado.html" name="encabezado" id="encabezado" scrolling="no" noresize>
+    <frame src="logo.html" name="logo" id="logo" scrolling="no" noresize>
+  </frameset>
+  <frameset cols="33%,67%">
+    <frame src="menu.html" name="menu" id="menu">
+    <frame src="principal.html" name="principal" id="principal">
+  </frameset>
+  <frame src="pie.html" name="pie" id="pie" scrolling="no" noresize>
+  <noframes>
+    <body>
+      <p>Su navegador no soporta marcos. Puede acceder al contenido desde estos enlaces:</p>
+      <ul>
+        <li><a href="Articulos.htm">Artículos</a></li>
+        <li><a href="MasInfo.htm">Más información</a></li>
+      </ul>
+    </body>
+  </noframes>
+</frameset>
+</html>
